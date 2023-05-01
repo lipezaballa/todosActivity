@@ -17,20 +17,40 @@ import { Observable } from "rxjs";
                     let todo of (todos$ | async) || [] | filterBy : searchText
                 "
                 [item]="todo"
+                (remove)="onRemove(todo)"
             ></app-todo-item>
         </div>
     `,
     styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
-    readonly todos$: Observable<Todo[]>;
-    loading = true;
-    searchText = "";
+    todos$: Observable<Todo[]>;
+    todoService: TodoService;
+    loading: boolean;
+    searchText: string;
 
     constructor(todoService: TodoService) {
+        this.loading = true;
+        this.searchText = "";
+        this.todoService = todoService;
         this.todos$ = todoService.getAll();
         this.todos$.subscribe(() => {
             this.loading = false;
         });
+    }
+
+    onRemove(todo: Todo) {
+        try {
+            this.loading = true;
+            this.todoService.remove(todo.id).subscribe(() => {
+                this.todos$ = this.todoService.getAll();
+            });
+            this.todos$.subscribe(() => {
+                this.loading = false;
+            });
+        } catch (error) {
+            console.error("Error deleting todo: ", error);
+            this.loading = false;
+        }
     }
 }

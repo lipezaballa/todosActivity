@@ -55,6 +55,7 @@ Wire up the existing search field, so the TODO list is filtered when the input c
 
 Using the existing method `remove` on todo.service.ts, remove a TODO when it's clicked.
 Note that the `remove` method is intentionally made, so it randomly sometimes fails. This error should be handled as you see fit.
+#SOLUTION: Adds a click event in the todo-item component, which will be triggered when the user clicks on the list item. In the event handler, call the remove method of the todoService, which will remove the todo from the todo list. It updates the todo list after removing using the getAll method of the todoService. To solve the failure of the remove, you can do a try-catch, and handle the error in the catch, from now it only prints by console that has failed
 
 ### Replace the mock service by backend API calls
 
