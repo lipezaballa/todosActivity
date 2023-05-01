@@ -37,23 +37,30 @@ Run `TodoApplication.java` for the backend server. All endpoints will be served 
 `org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "INSERT INTO todo (id, task, priority) VALUES (1, 'Implement loading - frontend only', 1)" via JDBC Statement`
 
 # Exercise
+
 Please implement the following as separate commits:
 
 ### Show the loading bar only while data as loading
+
 Currently, TODOs are fetched through a mock service (todo.service.ts) with an artificial delay of 2s.
 Hide the loading bar when data has finished loading.
+#SOLUTION: Create a variable "loading" true, when getAll is finished with a subscribe I change "loading" to false, with an \*ngIf in the progress-bar it appears only while it is true
 
 ### Implement search
+
 Wire up the existing search field, so the TODO list is filtered when the input changes.
 
 ### Implement delete on click
+
 Using the existing method `remove` on todo.service.ts, remove a TODO when it's clicked.
 Note that the `remove` method is intentionally made, so it randomly sometimes fails. This error should be handled as you see fit.
 
 ### Replace the mock service by backend API calls
 
 #### todo-list-backend
+
 Provide the API call endpoints with the help of Spring (entity, repository, controller etc.) that will be used in from the front-end.
 
 #### todo-list-frontend
+
 Using the backend API, replace the method definitions at todo.service.ts with actual API calls
