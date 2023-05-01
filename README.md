@@ -49,6 +49,7 @@ Hide the loading bar when data has finished loading.
 ### Implement search
 
 Wire up the existing search field, so the TODO list is filtered when the input changes.
+#SOLUTION: Create a pipe to filter the array with the string, use the filter in the ngFor, take care of the null initialize with async
 
 ### Implement delete on click
 

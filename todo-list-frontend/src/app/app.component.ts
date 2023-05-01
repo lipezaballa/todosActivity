@@ -10,10 +10,12 @@ import { Observable } from "rxjs";
         </div>
         <div class="list">
             <label for="search">Search...</label>
-            <input id="search" type="text" />
+            <input id="search" type="text" [(ngModel)]="searchText" />
             <app-progress-bar *ngIf="loading"></app-progress-bar>
             <app-todo-item
-                *ngFor="let todo of todos$ | async"
+                *ngFor="
+                    let todo of (todos$ | async) || [] | filterBy : searchText
+                "
                 [item]="todo"
             ></app-todo-item>
         </div>
@@ -23,6 +25,7 @@ import { Observable } from "rxjs";
 export class AppComponent {
     readonly todos$: Observable<Todo[]>;
     loading = true;
+    searchText = "";
 
     constructor(todoService: TodoService) {
         this.todos$ = todoService.getAll();
