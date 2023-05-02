@@ -63,6 +63,14 @@ Note that the `remove` method is intentionally made, so it randomly sometimes fa
 
 Provide the API call endpoints with the help of Spring (entity, repository, controller etc.) that will be used in from the front-end.
 
+#SOLUTION:
+Due to dependency problems with the different versions of java, gradle, spring boot, maven... I have not been able to run the backend exercise and therefore, I have not been able to test anything. For this reason, I leave here explained each step, and the code that has to be done in the corresponding files. The same happens with the use of this back from the frontend, I have not been able to test it either, and therefore I leave the todo.service.ts so that you can see how the frontend works.
+For the backend we must create the data structure that represents each of the insertions to be made, for this I create the Todo.java class.#A repository is created that extends the JpaRepository in which all objects will be stored, it is called TodoRepository.java
+The TodoController.java file is created where I implement all the functions required for the management of the backend, allowing to get all, add, modify and delete one by one.
+A file (TodoNotFoundException.java) is created to handle the exception if the object to be updated or deleted is not found.
+TodoApplication.java is already implemented to run the repository.
+The file LoadTodoDatabase.java has been created where the corresponding insertions are made to fill the database.
+
 #### todo-list-frontend
 
 Using the backend API, replace the method definitions at todo.service.ts with actual API calls
